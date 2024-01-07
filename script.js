@@ -42,14 +42,63 @@ document.addEventListener('DOMContentLoaded', () => {
   
     function draw() {
       gameBoard.innerHTML = '';
-      
-      snake.forEach(segment => {
-        const snakeElement = document.createElement('div');
-        snakeElement.classList.add('snake');
-        snakeElement.innerHTML = "O";
-        snakeElement.style.left = `${segment.x}px`;
-        snakeElement.style.top = `${segment.y}px`;
 
+      
+      snake.forEach((segment, index) => {
+        const snakeElement = document.createElement('div');
+        if(index==0){
+
+          snakeElement.classList.add('snakeHead');
+          snakeElement.innerHTML = '<i class="fa-solid fa-glasses"></i>';
+          snakeElement.style.left = `${segment.x}px`;
+          snakeElement.style.top = `${segment.y}px`;
+
+          switch(direction){
+            case 'up':
+              snakeElement.style.transform = 'rotate(180deg)';
+              break;
+            case 'down':
+              snakeElement.style.transform = 'rotate(0deg)';
+              break;
+            case 'left':
+              snakeElement.style.transform = 'rotate(90deg)';
+              break;
+            case 'right':
+              snakeElement.style.transform = 'rotate(-90deg)';
+              break;
+          }
+
+        }
+        else if(index == snake.length -1){
+          snakeElement.classList.add('snakeTail');
+          snakeElement.innerHTML = '<i class="fa-solid fa-ghost fa-2x"></i>';
+          snakeElement.style.left = `${segment.x}px`;
+          snakeElement.style.top = `${segment.y}px`;
+
+          switch(direction){
+            case 'up':
+              snakeElement.style.transform = 'rotate(0deg)';
+              break;
+            case 'down':
+              snakeElement.style.transform = 'rotate(180deg)';
+              break;
+            case 'left':
+              snakeElement.style.transform = 'rotate(-90deg)';
+              break;
+            case 'right':
+              snakeElement.style.transform = 'rotate(90deg)';
+              break;
+          }
+         }
+        else{
+
+          snakeElement.classList.add('snake');
+          snakeElement.innerHTML = "O";
+          snakeElement.style.left = `${segment.x}px`;
+          snakeElement.style.top = `${segment.y}px`;
+
+        }
+        
         gameBoard.appendChild(snakeElement);
       });
   
@@ -65,7 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if(isPaused) return;
 
       const head = { ...snake[0] };
-  
+
+
       switch (direction) {
         case 'up':
           head.y -= 20;
@@ -130,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       initializeGame();
     }
-  
+    
     document.addEventListener('keydown', event => {
       switch (event.key) {
         case 'ArrowUp':
@@ -162,7 +212,13 @@ document.addEventListener('DOMContentLoaded', () => {
     isPaused = !isPaused;
     pauseButton.innerHTML = isPaused ? '<i class="fa-solid fa-play"></i>' : '<i class="fa-solid fa-pause"></i>';
   }
-
+  
+  document.addEventListener('keydown', function(event) {
+    if (event.code === 'Space') {
+      isPaused = !isPaused;
+      pauseButton.innerHTML = isPaused ? '<i class="fa-solid fa-play"></i>' : '<i class="fa-solid fa-pause"></i>';
+    }
+});
 
     initializeGame();
   
