@@ -347,7 +347,7 @@ section .signin .content .hscore
                             }else{
                                 localStorage.setItem('scorem', JSON.stringify(userscore));
                             }
-
+                            window.location.reload();
                         }
                     }else{
                         document.querySelectorAll('.boxOpen')[1].classList.remove('boxOpen');
