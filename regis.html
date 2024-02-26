@@ -125,8 +125,9 @@
                 const user = {regisUsername, regisPassword};
 
                 localStorage.setItem(regisUsername, JSON.stringify(user));
-
+                window.location.href = 'index.html';
                 alert('Account created successfully!');
+                
             }else{
                 console.log(JSON.parse(existingUser));
                 alert('Username already exist. Please choose a different one.');
