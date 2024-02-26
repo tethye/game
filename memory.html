@@ -251,7 +251,7 @@ section .signin .content .hscore
   
           <a href="highscoremem.html">High Score</a> 
           
-          <a href="index.html" onclick="logout()">Log out</a> 
+          <a href="menu.html">Back to menu</a> 
           
     
         </div> 
@@ -266,9 +266,7 @@ section .signin .content .hscore
     <script type="application/javascript">
     document.getElementById('uname').innerText = 'Hello '+localStorage.getItem('curuser') + '!';
   
-    function logout(){
-      localStorage.removeItem('curuser');
-    }
+    
     let seconds = 0;
 
     function startTimer() {
