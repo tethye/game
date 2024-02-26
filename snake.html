@@ -76,7 +76,7 @@
 
         <a href="highscore.html">High Score</a> 
         
-        <a href="index.html" onclick="logout()">Log out</a> 
+        <a href="menu.html">Back to menu</a> 
         
   
       </div> 
@@ -91,9 +91,7 @@
   <script type="application/javascript">
   document.getElementById('uname').innerText = 'Hello '+localStorage.getItem('curuser') + '!';
 
-  function logout(){
-    localStorage.removeItem('curuser');
-  }
+  
   </script>
   
 </body>
