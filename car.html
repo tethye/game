@@ -6840,7 +6840,7 @@ function storehighscore(carpoints){
     const prevscore = JSON.parse(localStorage.getItem('scorecar'));
 
     if(prevscore){
-      if(prevscore.score>score){
+      if(prevscore.carpoints>carpoints){
         localStorage.removeItem('scorecar');
         localStorage.setItem('scorecar', JSON.stringify(userscore));
       }
