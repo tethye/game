@@ -6197,7 +6197,26 @@ start.addEventListener("click", () => {
 
   }
 
+  function storehighscore(carpoints){
+    
+    const curuser = localStorage.getItem('curuser');
 
+    const userscore = {curuser, carpoints};
+
+    const prevscore = JSON.parse(localStorage.getItem('scorecar'));
+
+    if(prevscore){
+      if(prevscore.carpoints>carpoints){
+        localStorage.removeItem('scorecar');
+        localStorage.setItem('scorecar', JSON.stringify(userscore));
+      }
+    }else{
+        localStorage.setItem('scorecar', JSON.stringify(userscore));
+    }
+  
+
+  }
+  
 
 
 }) // "Start" Btn Scopes End 
@@ -6831,26 +6850,7 @@ createStarsObj()
 
 
 
-function storehighscore(carpoints){
-    
-    const curuser = localStorage.getItem('curuser');
 
-    const userscore = {curuser, carpoints};
-
-    const prevscore = JSON.parse(localStorage.getItem('scorecar'));
-
-    if(prevscore){
-      if(prevscore.carpoints>carpoints){
-        localStorage.removeItem('scorecar');
-        localStorage.setItem('scorecar', JSON.stringify(userscore));
-      }
-    }else{
-        localStorage.setItem('scorecar', JSON.stringify(userscore));
-    }
-  
-
-  }
-  storehighscore(pointsNum)
 
 
 
