@@ -131,7 +131,7 @@ section .signin
 {
   position: absolute;
   width: 900px;
-  background: #222;  
+  background: transparent;  
   z-index: 1000;
   display: flex;
   justify-content: center;
@@ -3060,6 +3060,16 @@ input[type="submit"]:active
   }
 }
 
+#uname {
+   min-width: fit-content;
+   position: relative;
+   display: flex;
+   left: -350px;
+   top: 28px;
+   height: 20px;
+   color: aqua;
+   font-size: 20px;
+}
 
 .resolution-warning {
   display: none;
@@ -3148,11 +3158,12 @@ input[type="submit"]:active
          <div class="signin"> 
       
           <div class="content"> 
-      
-           <!-- <h2>Sign In</h2>  -->
+          
+            <h2 id="uname"></h2>
+           
       
            <div class="cargamebody">
-             
+            
             <div class="sky">
                 <div class="clouds-vector"></div>
                 <div class="sun-moon-obj-vector">
@@ -3201,6 +3212,7 @@ input[type="submit"]:active
                 </div>
             
                 <div class="points-container">
+                  
                   <h3 class="points-text">Points :</h3>
                   <h2 id = "points-div" class="points-div">0</h2>
                   <div class="opposite-car-points-appear-vector"></div>
@@ -3513,6 +3525,7 @@ let gameStarted = false;
 let trees =["🌲","🌳","🌴","🎄"]
 let homes =["🏕️","⛺","🏠","🏡","🏘️","🏚️","🏗️","🏭","🏢","🏬","🏣","🏤","🏦","🏥","🏨","🏪","🏫","🏩","💒","🏛️","⛪","🕌","🕍","🛕"]
 
+document.getElementById('uname').innerText = 'Hello '+localStorage.getItem('curuser') + '!';
 
 
 
@@ -4286,7 +4299,7 @@ author.addEventListener("click", openAuthorInfo)
 
 function openAuthorInfo() {
   document.getElementById('hname').innerText = 'Highest Scorer is ' +JSON.parse(localStorage.getItem('scorecar')).curuser ;
-  document.getElementById('hscore').innerText = 'Highest Point is ' +JSON.parse(localStorage.getItem('scorecar')).score;
+  document.getElementById('hscore').innerText = 'Highest Point is ' +JSON.parse(localStorage.getItem('scorecar')).carpoints;
   author.classList.toggle("menu-setting-all")
   author.classList.toggle("menu-setting-all1")
   authorInfoParentContainer.classList.toggle("displayed")
@@ -4852,35 +4865,6 @@ start.addEventListener("click", () => {
 
 
 
-  // function storehighscore(carpoints){
-    
-  //   const curuser = localStorage.getItem('curuser');
-
-  //   const userscore = {curuser, score};
-
-  //   const prevscore = JSON.parse(localStorage.getItem('scorecar'));
-
-  //   if(prevscore){
-  //     if(prevscore.score>score){
-  //       localStorage.removeItem('scorecar');
-  //       localStorage.setItem('scorecar', JSON.stringify(userscore));
-  //     }
-  //   }else{
-  //       localStorage.setItem('scorecar', JSON.stringify(userscore));
-  //   }
-  
-
-  // }
-
-
-
-
-
-
-
-
-
-
 
   let pointsOppositeCar = 0
   let pointsLineCar = 0
@@ -4936,9 +4920,10 @@ start.addEventListener("click", () => {
               gameOver = true;
               carHoodDamaged.style.display = "flex"
               steeringWheel.style.transform = "rotateY(10deg) rotateZ(50deg)"
-              // storehighscore(pointsNum)
+              
               smoke()
               removetreeshomes()
+              storehighscore(pointsNum)
               openElement(restart)
             }
 
@@ -4954,9 +4939,10 @@ start.addEventListener("click", () => {
               gameOver = true;
               carHoodDamaged.style.display = "flex"
               steeringWheel.style.transform = "rotateY(10deg) rotateZ(50deg)"
-              // storehighscore(pointsNum)
+              
               smoke()
               removetreeshomes()
+              storehighscore(pointsNum)
               openElement(restart)
             }
 
@@ -5759,10 +5745,10 @@ start.addEventListener("click", () => {
 
   function removetreeshomes(){
     if(gameOver==true){
-      document.getElementById("tree11").remove();
-      document.getElementById("tree22").remove();
-      document.getElementById("home11").remove();
-      document.getElementById("home22").remove();
+      document.getElementById("tree11").classList.remove("tree1");
+      document.getElementById("tree22").classList.remove("tree2");
+      document.getElementById("home11").classList.remove("home1");
+      document.getElementById("home22").classList.remove("home2");
     }
     
   }
@@ -6845,10 +6831,26 @@ createStarsObj()
 
 
 
+function storehighscore(carpoints){
+    
+    const curuser = localStorage.getItem('curuser');
 
+    const userscore = {curuser, carpoints};
 
+    const prevscore = JSON.parse(localStorage.getItem('scorecar'));
 
+    if(prevscore){
+      if(prevscore.score>score){
+        localStorage.removeItem('scorecar');
+        localStorage.setItem('scorecar', JSON.stringify(userscore));
+      }
+    }else{
+        localStorage.setItem('scorecar', JSON.stringify(userscore));
+    }
+  
 
+  }
+  storehighscore(pointsNum)
 
 
 
