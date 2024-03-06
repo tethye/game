@@ -131,7 +131,7 @@ section .signin
 {
   position: absolute;
   width: 900px;
-  background: transparent;  
+  background: #222;  
   z-index: 1000;
   display: flex;
   justify-content: center;
@@ -717,7 +717,7 @@ input[type="submit"]:active
   padding: 10px 0;
   background: rgb(9, 65, 253, 0.5);
   border-radius: 10px;
-  perspective: 40vw;
+  perspective: 50vw;
 }
 
 @keyframes appearMenu {
@@ -2620,20 +2620,20 @@ input[type="submit"]:active
 @keyframes homeanim {
     25%{
         font-size: 35px;
-        left: 680px;
+        left: 610px;
     }
 
     43%{
         font-size: 50px;
-        left: 760px;
+        left: 650px;
     }
      66%{
         font-size: 100px;
-        left: 825px;
+        left: 695px;
      }
      99%{
         font-size: 150px;
-        left: 870px;
+        left: 730px;
      }
     
 }
@@ -3060,16 +3060,6 @@ input[type="submit"]:active
   }
 }
 
-#uname {
-   min-width: fit-content;
-   position: relative;
-   display: flex;
-   left: -350px;
-   top: 28px;
-   height: 20px;
-   color: aqua;
-   font-size: 20px;
-}
 
 .resolution-warning {
   display: none;
@@ -3158,12 +3148,11 @@ input[type="submit"]:active
          <div class="signin"> 
       
           <div class="content"> 
-          
-            <h2 id="uname"></h2>
-           
+      
+           <!-- <h2>Sign In</h2>  -->
       
            <div class="cargamebody">
-            
+             
             <div class="sky">
                 <div class="clouds-vector"></div>
                 <div class="sun-moon-obj-vector">
@@ -3212,7 +3201,6 @@ input[type="submit"]:active
                 </div>
             
                 <div class="points-container">
-                  
                   <h3 class="points-text">Points :</h3>
                   <h2 id = "points-div" class="points-div">0</h2>
                   <div class="opposite-car-points-appear-vector"></div>
@@ -3230,14 +3218,16 @@ input[type="submit"]:active
               </div>
             
               <div class="ground">
-                <div id="tree11" class="tree1">
+                <!-- <div id="tree11" class="tree1">
                 </div>
                 <div id="tree22" class="tree2">
                 </div>
                 <div id="home11" class="home1">
                 </div>
                 <div id="home22" class="home2">
-                </div>
+                </div> -->
+                <div id="tr"></div>
+                <div id="hm"></div>
 
                 <div class="road-vector">
                   <div class="road"></div>
@@ -3522,10 +3512,12 @@ let lineCarPointsAppearVector = document.querySelector(".line-car-points-appear-
 
 let gameStarted = false;
 
+let tr = document.getElementById("tr")
+let hm = document.getElementById("hm")
+
 let trees =["🌲","🌳","🌴","🎄"]
 let homes =["🏕️","⛺","🏠","🏡","🏘️","🏚️","🏗️","🏭","🏢","🏬","🏣","🏤","🏦","🏥","🏨","🏪","🏫","🏩","💒","🏛️","⛪","🕌","🕍","🛕"]
 
-document.getElementById('uname').innerText = 'Hello '+localStorage.getItem('curuser') + '!';
 
 
 
@@ -4299,7 +4291,7 @@ author.addEventListener("click", openAuthorInfo)
 
 function openAuthorInfo() {
   document.getElementById('hname').innerText = 'Highest Scorer is ' +JSON.parse(localStorage.getItem('scorecar')).curuser ;
-  document.getElementById('hscore').innerText = 'Highest Point is ' +JSON.parse(localStorage.getItem('scorecar')).carpoints;
+  document.getElementById('hscore').innerText = 'Highest Point is ' +JSON.parse(localStorage.getItem('scorecar')).score;
   author.classList.toggle("menu-setting-all")
   author.classList.toggle("menu-setting-all1")
   authorInfoParentContainer.classList.toggle("displayed")
@@ -4590,26 +4582,11 @@ start.addEventListener("click", () => {
   document.addEventListener("keydown", DecreaseSpeedManuallyForBrake)
   
 
-  setInterval(() => {
-    rt = Math.floor((Math.random()*100)%4);
-     document.getElementById("tree11").innerHTML = trees[rt];
-  }, 2500);
   
-  setInterval(() => {
-    rt1 = Math.floor((Math.random()*100)%4);
-     document.getElementById("tree22").innerHTML = trees[rt1];
-  }, 2500);
 
   
-  setInterval(() => {
-    rt2 = Math.floor((Math.random()*100)%19);
-     document.getElementById("home11").innerHTML = homes[rt2];
-  }, 2500);
 
-  setInterval(() => {
-    rt3 = Math.floor((Math.random()*100)%19);
-     document.getElementById("home22").innerHTML = homes[rt3];
-  }, 2500);
+
 
 
 
@@ -4865,6 +4842,35 @@ start.addEventListener("click", () => {
 
 
 
+  // function storehighscore(carpoints){
+    
+  //   const curuser = localStorage.getItem('curuser');
+
+  //   const userscore = {curuser, score};
+
+  //   const prevscore = JSON.parse(localStorage.getItem('scorecar'));
+
+  //   if(prevscore){
+  //     if(prevscore.score>score){
+  //       localStorage.removeItem('scorecar');
+  //       localStorage.setItem('scorecar', JSON.stringify(userscore));
+  //     }
+  //   }else{
+  //       localStorage.setItem('scorecar', JSON.stringify(userscore));
+  //   }
+  
+
+  // }
+
+
+
+
+
+
+
+
+
+
 
   let pointsOppositeCar = 0
   let pointsLineCar = 0
@@ -4920,10 +4926,9 @@ start.addEventListener("click", () => {
               gameOver = true;
               carHoodDamaged.style.display = "flex"
               steeringWheel.style.transform = "rotateY(10deg) rotateZ(50deg)"
-              
+              // storehighscore(pointsNum)
               smoke()
               removetreeshomes()
-              storehighscore(pointsNum)
               openElement(restart)
             }
 
@@ -4939,10 +4944,9 @@ start.addEventListener("click", () => {
               gameOver = true;
               carHoodDamaged.style.display = "flex"
               steeringWheel.style.transform = "rotateY(10deg) rotateZ(50deg)"
-              
+              // storehighscore(pointsNum)
               smoke()
               removetreeshomes()
-              storehighscore(pointsNum)
               openElement(restart)
             }
 
@@ -5745,10 +5749,10 @@ start.addEventListener("click", () => {
 
   function removetreeshomes(){
     if(gameOver==true){
-      document.getElementById("tree11").classList.remove("tree1");
-      document.getElementById("tree22").classList.remove("tree2");
-      document.getElementById("home11").classList.remove("home1");
-      document.getElementById("home22").classList.remove("home2");
+      document.getElementById("tr").remove();
+      document.getElementById("hm").remove();
+      // document.getElementById("home11").remove();
+      // document.getElementById("home22").remove();
     }
     
   }
@@ -6077,7 +6081,57 @@ start.addEventListener("click", () => {
   increasePoints()
 
 
+  function generatehomestrees(){
 
+    let treeClassList = ["tree1", "tree2"]
+    let homeClassList = ["home1", "home2"]
+
+    if (tr.classList == "tree1") {
+      if (parseInt(tr.style.left) <= -200) {
+        tr.remove()
+      }
+    }
+    if (tr.classList == "tree2") {
+      if (parseInt(tr.style.left) >= 900) {
+        tr.remove()
+      }
+    }
+
+    if (hm.classList == "home1") {
+      if (parseInt(tr.style.left) <= -800) {
+        tr.remove()
+      }
+    }
+    if (tr.classList == "home2") {
+      if (parseInt(tr.style.left) >= 730) {
+        tr.remove()
+      }
+    }
+
+    setInterval(() => {
+      rt = Math.floor((Math.random()*100)%4);
+      tr.classList.add(treeClassList[Math.floor(Math.random()*100)%2]);
+      document.getElementById("tr").innerHTML = trees[rt];
+    }, 2500);
+
+    setInterval(() => {
+      rt1 = Math.floor((Math.random()*100)%4);
+      hm.classList.add(homeClassList[Math.floor(Math.random()*100)%2]);
+      document.getElementById("hm").innerHTML = homes[rt1];
+    }, 2500);
+
+
+// setInterval(() => {
+//   rt2 = Math.floor((Math.random()*100)%19);
+//    document.getElementById("home11").innerHTML = homes[rt2];
+// }, 2500);
+
+// setInterval(() => {
+//   rt3 = Math.floor((Math.random()*100)%19);
+//    document.getElementById("home22").innerHTML = homes[rt3];
+// }, 2500);
+  }
+  generatehomestrees();
 
 
 
@@ -6157,7 +6211,7 @@ start.addEventListener("click", () => {
 
 
 
-
+  
 
 
 
@@ -6197,26 +6251,7 @@ start.addEventListener("click", () => {
 
   }
 
-  function storehighscore(carpoints){
-    
-    const curuser = localStorage.getItem('curuser');
 
-    const userscore = {curuser, carpoints};
-
-    const prevscore = JSON.parse(localStorage.getItem('scorecar'));
-
-    if(prevscore){
-      if(prevscore.carpoints>carpoints){
-        localStorage.removeItem('scorecar');
-        localStorage.setItem('scorecar', JSON.stringify(userscore));
-      }
-    }else{
-        localStorage.setItem('scorecar', JSON.stringify(userscore));
-    }
-  
-
-  }
-  
 
 
 }) // "Start" Btn Scopes End 
@@ -6462,14 +6497,6 @@ morningToEvening_changeColor([27, 52, 77], [105, 162, 255], [26, 12, 54], [5, 10
 
 
 
-
-
-
-
-
-
-
-
 function createFirstClouds() {
 
   let randomCloudsFirstLoad = Math.floor(2 + Math.random() * 5)
@@ -6479,7 +6506,7 @@ function createFirstClouds() {
   for (let i = 0; i < arrayCloudsFirstLoad.length; i++) {
     let cloudRandomSpeedInterval = Math.floor(10 + Math.random() * 50)
 
-    let cloud_BottomRandom = Math.floor(50 + Math.random() * 300)
+    let cloud_BottomRandom = Math.floor(70 + Math.random() * 300)
     let cloud_LeftPosition = Math.floor(-200 + Math.random() * 500)
     let cloud_WidthRandom = Math.floor(50 + Math.random() * 500)
     let cloud_HeightRandom = cloud_WidthRandom / Math.floor(1.5 + Math.random() * 15)
@@ -6542,7 +6569,7 @@ function cloudFunc() {
   let inervalId1 = setInterval(() => {
     let cloudRandomSpeedInterval = Math.floor(10 + Math.random() * 50)
 
-    let cloudBottomRandom = Math.floor(50 + Math.random() * 300)
+    let cloudBottomRandom = Math.floor(70 + Math.random() * 300)
     let cloudWidthRandom = Math.floor(50 + Math.random() * 500)
     let cloudHeightRandom = cloudWidthRandom / Math.floor(1.5 + Math.random() * 15)
     let cloudBorderRadiusRandom = Math.floor(50 + Math.random() * 10)
@@ -6847,6 +6874,9 @@ function createStarsObj() {
   }
 }
 createStarsObj()
+
+
+
 
 
 
