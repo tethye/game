@@ -4842,25 +4842,7 @@ start.addEventListener("click", () => {
 
 
 
-  // function storehighscore(carpoints){
-    
-  //   const curuser = localStorage.getItem('curuser');
-
-  //   const userscore = {curuser, score};
-
-  //   const prevscore = JSON.parse(localStorage.getItem('scorecar'));
-
-  //   if(prevscore){
-  //     if(prevscore.score>score){
-  //       localStorage.removeItem('scorecar');
-  //       localStorage.setItem('scorecar', JSON.stringify(userscore));
-  //     }
-  //   }else{
-  //       localStorage.setItem('scorecar', JSON.stringify(userscore));
-  //   }
-  
-
-  // }
+   
 
 
 
@@ -4926,10 +4908,12 @@ start.addEventListener("click", () => {
               gameOver = true;
               carHoodDamaged.style.display = "flex"
               steeringWheel.style.transform = "rotateY(10deg) rotateZ(50deg)"
-              // storehighscore(pointsNum)
+              
               smoke()
               removetreeshomes()
+              storehighscore(pointsNum)
               openElement(restart)
+              
             }
 
             if (parseInt(Car.style.top) > 450) {
@@ -4944,10 +4928,12 @@ start.addEventListener("click", () => {
               gameOver = true;
               carHoodDamaged.style.display = "flex"
               steeringWheel.style.transform = "rotateY(10deg) rotateZ(50deg)"
-              // storehighscore(pointsNum)
+              
               smoke()
               removetreeshomes()
+              storehighscore(pointsNum)
               openElement(restart)
+              
             }
 
             if (parseInt(Car.style.top) > 350 || parseInt(Car.style.top) <= 0) {
@@ -5824,18 +5810,6 @@ start.addEventListener("click", () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
   function increaseDistance() {
     let distanceInMeters = 0;
     let distanceInKMs;
@@ -6251,6 +6225,26 @@ start.addEventListener("click", () => {
 
   }
 
+ 
+  function storehighscore(score){
+    
+    const curuser = localStorage.getItem('curuser');
+    const userscore = {curuser, score};
+
+    const prevscore = JSON.parse(localStorage.getItem('scorecar'));
+
+    if(prevscore){
+      if(prevscore.score < score){
+        localStorage.removeItem('scorecar');
+        localStorage.setItem('scorecar', JSON.stringify(userscore));
+      }
+    }else{
+        localStorage.setItem('scorecar', JSON.stringify(userscore));
+    }
+ 
+
+  }
+   storehighscore(pointsNum)
 
 
 
