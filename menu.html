@@ -213,7 +213,9 @@
 }
   
 }
-
+.menu-item{
+  
+}
 
   </style>
 
@@ -279,11 +281,11 @@
      <div class="form"> 
        <form id="regis-form">
         <ul class="threeD-button-set">
-          <li><a href="snake.html">Snake Game</a></li>
-          <li><a href="memory.html">Memory Game</a></li>
-          <li><a href="car.html">Car Game</a></li>
-          <li><a href="highscore.html">High Score</a></li>
-          <li><a onclick="logout()" href="index.html">Log out</a></li>
+          <li class ="menu-item"><a href="snake.html">Snake Game</a></li>
+          <li class ="menu-item"><a href="memory.html">Memory Game</a></li>
+          <li class ="menu-item"><a href="car.html">Car Game</a></li>
+          <li class ="menu-item"><a href="highscore.html">High Score</a></li>
+          <li class ="menu-item"><a onclick="logout()" href="index.html">Log out</a></li>
         </ul>
       </form>
 
@@ -297,6 +299,26 @@
 
   <script type="application/javascript">
     document.getElementById('uname').innerText = 'Hello '+localStorage.getItem('curuser') + '!';
+
+    let menuSettingAll = document.querySelectorAll(".menu-item")
+    let menuSettingAllArray = [...menuSettingAll]
+
+    function soundEffects(url) {
+  let a = new Audio(url)
+  a.play()
+}
+
+
+
+menuSettingAllArray.map((menuItem) => {
+  menuItem.removeEventListener(
+    "mouseover", () => soundEffects("http://codeskulptor-demos.commondatastorage.googleapis.com/pang/pop.mp3")
+  )
+  menuItem.addEventListener(
+    "mouseover", () => soundEffects("http://codeskulptor-demos.commondatastorage.googleapis.com/pang/pop.mp3")
+  )
+})
+
 
 function logout(){
   localStorage.removeItem('curuser');
