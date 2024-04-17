@@ -266,6 +266,17 @@ section .signin .content .hscore
     <script type="application/javascript">
     document.getElementById('uname').innerText = 'Hello '+localStorage.getItem('curuser') + '!';
   
+    function soundEffects(url) {
+      let a = new Audio(url)
+      a.play()
+    }
+
+ 
+  document.addEventListener(
+    "keydown", () => soundEffects("http://codeskulptor-demos.commondatastorage.googleapis.com/pang/pop.mp3")
+  )
+
+
     
     let seconds = 0;
 
@@ -295,6 +306,7 @@ section .signin .content .hscore
     const emojis =["🐸","🐸","🌚","🌚","🤣","🤣","🤡","🤡","🦋","🦋","🍁","🍁","🤑","🤑","🤬","🤬"];
     var suffle = emojis.sort(() => (Math.random()>.5) ? 2 : -1);
     startTimer();
+
     for(var i=0; i<emojis.length; i++){
         let box = document.createElement('div');
         box.className = 'item';
@@ -302,6 +314,10 @@ section .signin .content .hscore
 
         box.onclick = function(){
             this.classList.add('boxOpen')
+
+            soundEffects("http://codeskulptor-demos.commondatastorage.googleapis.com/pang/pop.mp3");
+ 
+
             
             setTimeout(function(){
                 if(document.querySelectorAll('.boxOpen').length>1){
