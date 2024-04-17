@@ -6,6 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // let gameInterval;
 
 
+    function soundEffects(url) {
+      let a = new Audio(url)
+      a.play()
+    }
+  
+    
+   
+    
+
     const gameBoard = document.getElementById('game-board');
     const pauseButton = document.getElementById('pause-btn');
 
@@ -134,6 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
       snake.unshift(head);
   
       if (head.x === food.x && head.y === food.y) {
+        soundEffects("http://codeskulptor-demos.commondatastorage.googleapis.com/pang/pop.mp3");
         food = getRandomPosition();
       } else {
         snake.pop();
