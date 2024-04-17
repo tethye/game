@@ -322,6 +322,7 @@ section .signin .content .hscore
             setTimeout(function(){
                 if(document.querySelectorAll('.boxOpen').length>1){
                     if(document.querySelectorAll('.boxOpen')[0].innerHTML == document.querySelectorAll('.boxOpen')[1].innerHTML){
+                        soundEffects("img/flute-bonus.wav");
                         document.querySelectorAll('.boxOpen')[0].classList.add('boxMatch');
                         document.querySelectorAll('.boxOpen')[1].classList.add('boxMatch');
 
