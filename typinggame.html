@@ -160,6 +160,7 @@ section .signin .content .hscore
     background-color: transparent;
     transform: translateX(-60%) translateY(20%);
     z-index: 1;
+    animation: slideBottom 3s ease forwards;
     }
     
     .fireball{
@@ -182,6 +183,17 @@ section .signin .content .hscore
       
       
     } */
+
+    @keyframes slideBottom {
+    0% {
+        transform: translateY(-300px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
     
   
 
@@ -481,8 +493,9 @@ section .signin .content .hscore
     
     document.addEventListener("keydown", checkInput);
     
+    setTimeout(updateWord, 3200);
     
-    updateWord(); // Initial word
+   // updateWord(); // Initial word
     resetWordPosition();  // Reset word position
 
     
