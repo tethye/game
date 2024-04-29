@@ -260,7 +260,7 @@ section .signin .content .hscore
      
        
       <div id="game-screen">
-        <input type="text" style="position: absolute; left: -9999px;" autofocus />
+         <input type="text" id="triggerInput" style="position: absolute; left: -9999px;" />
         <em id="word"></em>
         <div id="gun"><i class="fa-solid fa-dice-d20 fa-2x"></i></div> 
       </div>
@@ -359,6 +359,10 @@ section .signin .content .hscore
     "COOPERATION", "PARTNERSHIP", "ALLIANCE", "ASSOCIATION", "CONNECTION", "RELATIONSHIP", "BOND", "TIE", "LINK", "NETWORK"];
     let currentWordIndex = (Math.floor(Math.random()*100*words.length))%words.length;
     let currentWord = words[currentWordIndex];
+
+
+
+    document.getElementById('triggerInput').focus();
     
 
     function updateScore() {
