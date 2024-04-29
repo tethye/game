@@ -360,11 +360,6 @@ section .signin .content .hscore
     let currentWordIndex = (Math.floor(Math.random()*100*words.length))%words.length;
     let currentWord = words[currentWordIndex];
 
-
-
-    document.getElementById('triggerInput').focus();
-    
-
     function updateScore() {
         scoreSpan.textContent = score;
     }
@@ -499,6 +494,8 @@ section .signin .content .hscore
     document.addEventListener("keydown", checkInput);
     
     setTimeout(updateWord, 3200);
+
+    document.getElementById('triggerInput').focus();
     
    // updateWord(); // Initial word
     resetWordPosition();  // Reset word position
