@@ -490,6 +490,11 @@ section .signin .content .hscore
     //     }
     // }
 
+     gun.addEventListener('click', function() {
+            // Focus on the hidden input field to trigger the keyboard
+            document.getElementById('triggerInput').focus();
+    });
+
     
     document.addEventListener("keydown", checkInput);
     
