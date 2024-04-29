@@ -216,6 +216,55 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+
+
+    let startX, startY, endX, endY;
+
+document.addEventListener('touchstart', (event) => {
+    startX = event.touches[0].clientX;
+    startY = event.touches[0].clientY;
+});
+
+document.addEventListener('touchmove', (event) => {
+    // Prevent scrolling when swiping
+    event.preventDefault();
+});
+
+document.addEventListener('touchend', (event) => {
+    endX = event.changedTouches[0].clientX;
+    endY = event.changedTouches[0].clientY;
+
+    const deltaX = endX - startX;
+    const deltaY = endY - startY;
+
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        // Horizontal swipe
+        if (deltaX > 0) {
+            if (direction !== 'left') {
+                direction = 'right';
+            }
+        } else {
+            if (direction !== 'right') {
+                direction = 'left';
+            }
+        }
+    } else {
+        // Vertical swipe
+        if (deltaY > 0) {
+            if (direction !== 'up') {
+                direction = 'down';
+            }
+        } else {
+            if (direction !== 'down') {
+                direction = 'up';
+            }
+        }
+    }
+});
+
+
+    
+
     pauseButton.addEventListener('click', togglePause);
 
   function togglePause() {
