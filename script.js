@@ -221,6 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let startX, startY, endX, endY;
 
 document.addEventListener('touchstart', (event) => {
+    event.preventDefault();
     startX = event.touches[0].clientX;
     startY = event.touches[0].clientY;
 });
