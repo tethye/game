@@ -110,7 +110,7 @@
     function login() {
 
 
-      const loginUser = trim(document.getElementById('login-user').value);
+      const loginUser = document.getElementById('login-user').value;
       const loginPass = document.getElementById('login-pass').value;
 
       const suser = localStorage.getItem(loginUser);
