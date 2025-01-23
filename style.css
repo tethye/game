@@ -106,6 +106,14 @@ section .signin .content .links a:nth-child(2)
   color: rgb(90, 192, 240);
   font-weight: 600;
 }
+section .signin .content .speedContainer
+{
+  position: absolute;
+  top: -.7%;
+  left: 50%;
+  color: rgb(90, 192, 240);
+  font-weight: 600;
+}
 
 section .signin .content .hscore
 {
@@ -166,9 +174,12 @@ section .signin .content .hscore
   
   .food {
     position: absolute;
-    background-color: #b44848;
+    /* background-color: #b44848; */
     width: 20px;
     height: 20px;
     border-radius: 50%;
   }
   
+
+
+
